@@ -74,9 +74,9 @@ end
 post '/trees/:id/delete' do
 
   tree = Tree.find(params[:id])
-  comment = Comment.where(tree_id: @tree.id)
+  comments = Comment.where(tree_id: tree.id)
   tree.delete
-  comment.delete
+  comments.delete_all
 
   # delete tree with corresponding id from database
 
