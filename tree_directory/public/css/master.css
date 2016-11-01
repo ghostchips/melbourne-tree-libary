@@ -1,0 +1,35 @@
+img {
+  width: 10em;
+}
+
+label {
+  display: block;
+}
+
+body {
+  background-color: mintcream;
+}
+
+button {
+  clear: both;
+  display: block;
+}
+
+.dishes {
+  float: right;
+  width: 10em;
+}
+
+.layout {
+  display: block;
+  float: left;
+  margin: 0 auto;
+  max-width: 40em;
+  width: 80%;
+  background-color: white;
+}
+
+.input-box {
+  display: block;
+  float: right;
+}

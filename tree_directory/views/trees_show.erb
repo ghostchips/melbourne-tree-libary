@@ -1,0 +1,30 @@
+
+<h2><%= @tree.name %></h2>
+
+<img src="<%= @tree.image_url %>"/>
+
+<p>
+  <%=@tree.description %>
+</p>
+
+<form action="/trees/edit/<%= @tree.id %>" method="get">
+  <button>edit</button>
+</form>
+
+<form action="/trees/<%= @tree.id %>/delete" method="post">
+  <button>delete</button>
+</form>
+
+<form action="/comments" method="post">
+  <input type="hidden" name="tree_id"
+  value="<%= @tree.id %>">
+  <textarea name="body" rows="8" cols="40">
+  </textarea>
+  <button>post comment</button>
+</form>
+
+<h3>Comments:</h3>
+<% @comments.each do |comment| %>
+  <p>User photo, Username:</p>
+  <p><%= comment.body %></p>
+<% end %>

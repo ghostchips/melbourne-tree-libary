@@ -1,0 +1,26 @@
+
+<h2>All Trees</h2>
+
+<% @tree.each do |tree| %>
+
+  <p>
+    <a href="/trees/<%= tree.id %>">
+      <%= tree.name %>
+    </a>
+  </p>
+
+  <a href="/trees/<%= tree.id%>">
+     <img src="<%= tree.image_url %>"/>
+  </a>
+
+  <p>
+    <a href="#">
+      tree.location
+    </a>
+  </p>
+
+<% end %>
+
+<form action="/trees/add">
+  <button>add</button>
+</form>
