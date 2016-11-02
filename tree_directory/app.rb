@@ -1,14 +1,17 @@
 
 require 'sinatra'
 require 'sinatra/reloader'
+require 'pry'
 
 require_relative 'db_config'
 require_relative 'models/tree'
 require_relative 'models/comment'
 require_relative 'models/user'
 require_relative 'models/location'
-require_relative 'sessions'
 require_relative 'helpers'
+require_relative 'sessions'
+require_relative 'profile'
+
 
 
 get '/' do
@@ -24,16 +27,17 @@ get '/trees/add' do
 end
 
 post '/trees' do
+
   # Insert new tree into database
-  @tree = Tree.new
-  @tree.name = params[:name]
-  @tree.image_url = params[:image_url]
-  @tree.description = params[:description]
-  # @tree.location = # params[:location]
-  # @tree.date = # date of when posted
-  @tree.user_id = current_user.id
-  # @tree.user_photo = # user photo of current user
-  @tree.save
+  tree = Tree.new
+  tree.name = params[:name]
+  tree.image_url = params[:image_url]
+  tree.description = params[:description]
+  tree.location = params[:location]
+  # tree.date = # date of when posted
+  tree.user_id = current_user.id
+  # tree.user_photo = # user photo of current user
+  tree.save
 
   redirect to '/'
 end
@@ -93,4 +97,9 @@ post '/trees/update/:id' do
 
   redirect to "/trees/#{@tree.id}"
 
+end
+
+get '/trees/location' do
+
+  erb :trees_location
 end

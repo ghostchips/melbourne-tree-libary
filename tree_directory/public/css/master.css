@@ -12,7 +12,7 @@ body {
 
 button {
   clear: both;
-  display: block;
+  display: inline-block;
 }
 
 .dishes {
@@ -32,6 +32,11 @@ button {
 .input-box {
   display: block;
   float: right;
+}
+
+.tree-box {
+  display: block;
+  float: left;
 }
 
 .photo-icon {

@@ -1,17 +1,14 @@
 
 <h2><%= @tree.name %></h2>
-<!-- <h4><%= @tree.user.username %></h4> -->
-
+<a href="/profile/<%= @tree.user.id %>">
+  <img class="photo-icon" src="<%= @tree.user.photo %>" alt="" />
+</a>
 <img src="<%= @tree.image_url %>"/>
-
-<p>
-  <%=@tree.description %>
-</p>
-
 
 <% if logged_in? %>
 
-  <% if current_user == @tree.user_id %>
+  <% if current_user.id.to_s == @tree.user_id.to_s %>
+
     <form action="/trees/edit/<%= @tree.id %>" method="get">
       <button>edit</button>
     </form>
@@ -36,15 +33,14 @@
 
 <% end %>
 
-
-
-
 <div class="comments">
 
   <h3>Comments:</h3>
   <% @comments.each do |comment| %>
     <div class="comment">
-      <img class='photo-icon' src="<%= comment.user.photo %>" alt="" />
+      <a href="/profile/<%= comment.user.id %>">
+        <img class='photo-icon' src="<%= comment.user.photo %>" alt="" />
+      </a>
       <p><%= comment.user.username %></p>
       <p><%= comment.body %></p>
     </div>

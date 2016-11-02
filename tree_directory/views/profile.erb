@@ -1,7 +1,9 @@
 
-<h2>All Trees</h2>
+<h2><%= @user.username %></h2>
+<img src="<%= @user.photo%>" alt="" />
 
-<% @tree.each do |tree| %>
+
+<% @user.trees.each do |tree| %>
 
 <div class="tree-box">
   <p>
@@ -14,11 +16,9 @@
      <img src="<%= tree.image_url %>"/>
   </a>
 
-  <img class='photo-icon' src="<%= tree.user.photo %>" alt="" />
-
   <p>
-    <a href="<%= %>">
-      <%= tree.location %>
+    <a href="#">
+      tree.location
     </a>
   </p>
 

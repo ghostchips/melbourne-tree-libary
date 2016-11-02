@@ -13,9 +13,9 @@
   <textarea name="description" rows="8" cols="40"></textarea>
 
   <label>Location</label>
-  <select>
+  <select name="location">
     <% @location.each do |location| %>
-      <option value="<% location.postcode %>">
+      <option>
         <%= location.suburb %>
       </option>
     <% end %>

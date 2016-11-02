@@ -19,8 +19,7 @@ CREATE TABLE trees (
   description VARCHAR(400),
   date VARCHAR(400),
   user_id VARCHAR(400),
-  user_photo TEXT,
-  user_username VARCHAR(400)
+  location VARCHAR(400)
 );
 
 CREATE TABLE comments (

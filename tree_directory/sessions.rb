@@ -12,7 +12,7 @@ post '/session' do
     # you are fine, let me create a session for you
     session[:user_id] = user.id
     # redirect to session[:last_url]
-    redirect to '/'
+    redirect to "/profile/#{user.id}"
   else
     #who are you
     erb :session_new
