@@ -33,3 +33,8 @@ button {
   display: block;
   float: right;
 }
+
+.photo-icon {
+  width: 2em;
+  height: 2em;
+}

@@ -42,6 +42,8 @@ get '/trees/:id' do
   # Display tree with corresponding id
   @tree = Tree.find(params[:id])
   @comments = Comment.where(tree_id: @tree.id)
+  @user = User.all
+
   # Display all corresponding comments
   # if logged in, dipslay comment input box
   # if logged in as post user, display delete and edit buttons

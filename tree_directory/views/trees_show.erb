@@ -1,5 +1,6 @@
 
 <h2><%= @tree.name %></h2>
+<!-- <h4><%= @tree.user.username %></h4> -->
 
 <img src="<%= @tree.image_url %>"/>
 
@@ -7,24 +8,46 @@
   <%=@tree.description %>
 </p>
 
-<form action="/trees/edit/<%= @tree.id %>" method="get">
-  <button>edit</button>
-</form>
 
-<form action="/trees/<%= @tree.id %>/delete" method="post">
-  <button>delete</button>
-</form>
+<% if logged_in? %>
 
-<form action="/comments" method="post">
-  <input type="hidden" name="tree_id"
-  value="<%= @tree.id %>">
-  <textarea name="body" rows="8" cols="40">
-  </textarea>
-  <button>post comment</button>
-</form>
+  <% if current_user == @tree.user_id %>
+    <form action="/trees/edit/<%= @tree.id %>" method="get">
+      <button>edit</button>
+    </form>
 
-<h3>Comments:</h3>
-<% @comments.each do |comment| %>
-  <p>User photo, Username:</p>
-  <p><%= comment.body %></p>
+    <form action="/trees/<%= @tree.id %>/delete" method="post">
+      <button>delete</button>
+    </form>
+
+  <% end %>
+
+  <form action="/comments" method="post">
+    <input type="hidden" name="tree_id"
+    value="<%= @tree.id %>">
+    <textarea name="body" rows="8" cols="40">
+    </textarea>
+    <button>post comment</button>
+  </form>
+  <% else %>
+    <p>
+      log in to post comments
+    </p>
+
 <% end %>
+
+
+
+
+<div class="comments">
+
+  <h3>Comments:</h3>
+  <% @comments.each do |comment| %>
+    <div class="comment">
+      <img class='photo-icon' src="<%= comment.user.photo %>" alt="" />
+      <p><%= comment.user.username %></p>
+      <p><%= comment.body %></p>
+    </div>
+  <% end %>
+
+</div>
