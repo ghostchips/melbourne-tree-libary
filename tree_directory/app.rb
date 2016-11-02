@@ -7,35 +7,23 @@ require_relative 'models/tree'
 require_relative 'models/comment'
 require_relative 'models/user'
 require_relative 'models/location'
+require_relative 'sessions'
+require_relative 'helpers'
 
-
-get '/login' do
-
-  # display login page if not logged in
-  # erb :login
-end
 
 get '/' do
-
   # Display all trees from database.
   @tree = Tree.all
-
-  # Display logged in/out status
-  # if logged in, dipslay new entry button
   erb :index
 end
 
 get '/trees/add' do
-
   @location = Location.all
-  # Display tree entry from
-  # If not logged in, redirect to log in page.
-
+  redirect to '/session/new' if !logged_in?
   erb :trees_add
 end
 
 post '/trees' do
-
   # Insert new tree into database
   @tree = Tree.new
   @tree.name = params[:name]
@@ -43,7 +31,7 @@ post '/trees' do
   @tree.description = params[:description]
   # @tree.location = # params[:location]
   # @tree.date = # date of when posted
-  # @tree.user_id = # id of current user
+  @tree.user_id = current_user.id
   # @tree.user_photo = # user photo of current user
   @tree.save
 
@@ -51,11 +39,9 @@ post '/trees' do
 end
 
 get '/trees/:id' do
-
   # Display tree with corresponding id
   @tree = Tree.find(params[:id])
   @comments = Comment.where(tree_id: @tree.id)
-
   # Display all corresponding comments
   # if logged in, dipslay comment input box
   # if logged in as post user, display delete and edit buttons
@@ -67,18 +53,19 @@ post '/comments' do
   comment = Comment.new
   comment.body = params[:body]
   comment.tree_id = params[:tree_id]
+  comment.user_id = current_user.id
   comment.save
+
   redirect to "/trees/#{comment.tree_id}"
 end
 
 post '/trees/:id/delete' do
-
-  tree = Tree.find(params[:id])
-  comments = Comment.where(tree_id: tree.id)
-  tree.delete
-  comments.delete_all
-
   # delete tree with corresponding id from database
+  tree = Tree.find(params[:id])
+  tree.delete
+  # delete all comments with corresponding id from database
+  comments = Comment.where(tree_id: tree.id)
+  comments.delete_all
 
   redirect to '/'
 end

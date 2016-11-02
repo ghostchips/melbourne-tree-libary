@@ -4,9 +4,13 @@ CREATE DATABASE treelibrary;
 CREATE TABLE users (
   id SERIAL4 PRIMARY KEY,
   username VARCHAR(400),
-  password TEXT,
+  email VARCHAR(300),
+  password_digest VARCHAR(400),
   photo VARCHAR(400)
 );
+
+INSERT INTO users (username, email, photo)
+VALUES ('micah', 'micah@ga.co', 'https://youthgo.gov/sites/default/files/styles/large/public/montana_conservation_corps.jpg?itok=aOuDVkXo');
 
 CREATE TABLE trees (
   id SERIAL4 PRIMARY KEY,

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Tree Library</title>
     <link rel="stylesheet" href="css/master.css">
   </head>
   <body>
@@ -10,8 +10,31 @@
     <h1>Trees</h1>
 
     <form action="/" method="get">
-      <button>Return to home page</button>
+      <button>home page</button>
     </form>
+
+      <% if logged_in? %>
+        <h4>
+          logged in as: <%= current_user.username %>
+        </h4>
+
+        <form action="/session" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button>Logout</button>
+        </form>
+
+      <% else %>
+
+        <form action= "/session/new" method="get">
+          <button>Login</button>
+        </form>
+
+        <form action= "/session/create" method="post">
+          <button>Create login</button>
+        </form>
+
+      <% end %>
+
 
     <%= yield %>
 
