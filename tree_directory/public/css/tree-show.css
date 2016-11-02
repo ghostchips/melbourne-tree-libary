@@ -1,0 +1,12 @@
+#map {
+  float: right;
+  height: 15em;
+  width: 15em;
+ }
+
+ .show-tree-photo {
+   width: 17em;
+   -webkit-box-shadow: 11px 12px 20px -12px rgba(0,0,0,0.75);
+   -moz-box-shadow: 11px 12px 20px -12px rgba(0,0,0,0.75);
+   box-shadow: 11px 12px 20px -12px rgba(0,0,0,0.75);
+ }

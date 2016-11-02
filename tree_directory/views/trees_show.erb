@@ -3,10 +3,11 @@
 <a href="/profile/<%= @tree.user.id %>">
   <img class="photo-icon" src="<%= @tree.user.photo %>" alt="" />
 </a>
-<img src="<%= @tree.image_url %>"/>
+<img class="show-tree-photo" src="<%= @tree.image_url %>"/>
 <p>
   <%= @tree.description %>
 </p>
+
 
 <% if logged_in? %>
 
@@ -50,3 +51,12 @@
   <% end %>
 
 </div>
+
+<div id="map"></div>
+    <script>
+      var treeLat =  -0.3782E2
+      var treeLng = '<%=  %>'
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIamQbXXBDpNswS7aBs3MhPx-MApcojfA&callback=initMap">
+    </script>

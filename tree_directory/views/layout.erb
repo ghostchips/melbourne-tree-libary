@@ -4,44 +4,45 @@
     <meta charset="utf-8">
     <title>Tree Library</title>
     <link rel="stylesheet" href="/css/master.css">
+    <link rel="stylesheet" href="/css/tree-show.css">
+
   </head>
   <body>
 
     <wrapper>
 
-      <div class="layout-box">
+      <h1>TreeLibary</h1>
 
-        <h1>TreeLibary</h1>
+      <form action="/" method="get">
+        <button>home</button>
+      </form>
 
-        <form action="/" method="get">
-          <button>home</button>
+      <% if logged_in? %>
+
+        <a href="/profile/<%= current_user.id %>">
+          <img
+          class="photo-icon"
+          src="<%= current_user.photo %>"
+          alt="<%= current_user.username %>"/>
+        </a>
+
+        <form action="/session" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button>Logout</button>
         </form>
 
-        <% if logged_in? %>
+      <% else %>
 
-          <a href="/profile/<%= current_user.id %>">
-            <img
-            class="photo-icon"
-            src="<%= current_user.photo %>"
-            alt="<%= current_user.username %>"/>
-          </a>
+        <form action= "/session/new" method="get">
+          <button>Login</button>
+        </form>
 
-          <form action="/session" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <button>Logout</button>
-          </form>
+        <form action= "/session/create" method="post">
+          <button>Create login</button>
+        </form>
 
-        <% else %>
-
-          <form action= "/session/new" method="get">
-            <button>Login</button>
-          </form>
-
-          <form action= "/session/create" method="post">
-            <button>Create login</button>
-          </form>
-
-        <% end %>
+      <% end %>
+      <div class="layout-box">
 
         <%= yield %>
 
@@ -49,6 +50,8 @@
 
 
     </wrapper>
+    <script src="/javascripts/application.js">
 
+    </script>
   </body>
 </html>

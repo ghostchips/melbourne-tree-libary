@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-img {
-  width: 15em;
-}
-
 label {
   display: block;
 }
@@ -35,6 +31,9 @@ a {
   text-decoration: none;
 }
 
+wrapper {
+}
+
 .layout-box {
   /*display: block;*/
   /*float: left;*/
@@ -59,26 +58,40 @@ a {
 .tree-box {
   float: left;
   /*background-color: snow;*/
-  max-width: 15em;
-  height: 25em;
+  max-width: 12em;
+  height: 18em;
+  /*margin: 0 auto;*/
   margin: .5em;
   border-radius: .5em;
   text-align: center;
+
+}
+
+.tree-photo {
+  width: 12em;
   -webkit-box-shadow: 11px 12px 20px -12px rgba(0,0,0,0.75);
   -moz-box-shadow: 11px 12px 20px -12px rgba(0,0,0,0.75);
   box-shadow: 11px 12px 20px -12px rgba(0,0,0,0.75);
 }
 
-.tree-photo {
-}
 
-.photo-icon {
+.index-icon {
   width: 2em;
   height: 2em;
   display: block;
   float: right;
   border-radius: .5em;
   border: .1em solid white;
+}
+
+.photo-icon {
+  width: 2em;
+  height: 2em;
+  display: block;
+  float: left;
+  border-radius: .5em;
+  border: .1em solid white;
+  margin-right: .5em;
 }
 
 .tree-image {
