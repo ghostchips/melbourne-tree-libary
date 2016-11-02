@@ -13,7 +13,6 @@ require_relative 'sessions'
 require_relative 'profile'
 
 
-
 get '/' do
   # Display all trees from database.
   @tree = Tree.all
@@ -36,7 +35,6 @@ post '/trees' do
   tree.location = params[:location]
   # tree.date = # date of when posted
   tree.user_id = current_user.id
-  # tree.user_photo = # user photo of current user
   tree.save
 
   redirect to '/'

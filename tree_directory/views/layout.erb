@@ -7,40 +7,48 @@
   </head>
   <body>
 
-    <h1>Trees</h1>
+    <wrapper>
 
-    <form action="/" method="get">
-      <button>home page</button>
-    </form>
+      <div class="layout-box">
 
-      <% if logged_in? %>
+        <h1>TreeLibary</h1>
 
-        <a href="/profile/<%= current_user.id %>">
-          <img 
-          class="photo-icon"
-          src="<%= current_user.photo %>"
-          alt="<%= current_user.username %>"/>
-        </a>
-
-        <form action="/session" method="post">
-          <input type="hidden" name="_method" value="delete">
-          <button>Logout</button>
+        <form action="/" method="get">
+          <button>home</button>
         </form>
 
-      <% else %>
+        <% if logged_in? %>
 
-        <form action= "/session/new" method="get">
-          <button>Login</button>
-        </form>
+          <a href="/profile/<%= current_user.id %>">
+            <img
+            class="photo-icon"
+            src="<%= current_user.photo %>"
+            alt="<%= current_user.username %>"/>
+          </a>
 
-        <form action= "/session/create" method="post">
-          <button>Create login</button>
-        </form>
+          <form action="/session" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button>Logout</button>
+          </form>
 
-      <% end %>
+        <% else %>
+
+          <form action= "/session/new" method="get">
+            <button>Login</button>
+          </form>
+
+          <form action= "/session/create" method="post">
+            <button>Create login</button>
+          </form>
+
+        <% end %>
+
+        <%= yield %>
+
+      </div>
 
 
-    <%= yield %>
+    </wrapper>
 
   </body>
 </html>

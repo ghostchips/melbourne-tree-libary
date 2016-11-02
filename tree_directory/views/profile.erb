@@ -2,6 +2,8 @@
 <h2><%= @user.username %></h2>
 <img src="<%= @user.photo%>" alt="" />
 
+<h3>Trees by <%= @user.username %></h3>
+
 
 <% @user.trees.each do |tree| %>
 
@@ -25,6 +27,18 @@
 <% end %>
 
 </div>
+
+<h3>Comments by <%= @user.username %></h3>
+
+<% @user.comments.each do |comment| %>
+
+  <p>
+    <%= comment.body %>
+  </p>
+
+<% end %>
+
+
 <% if logged_in? %>
   <form action="/trees/add">
     <button>add</button>

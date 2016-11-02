@@ -1,5 +1,9 @@
+* {
+  box-sizing: border-box;
+}
+
 img {
-  width: 10em;
+  width: 15em;
 }
 
 label {
@@ -10,23 +14,41 @@ body {
   background-color: mintcream;
 }
 
-button {
+form {
   clear: both;
   display: inline-block;
 }
 
-.dishes {
-  float: right;
-  width: 10em;
+button {
+  font-size: 1em;
 }
 
-.layout {
-  display: block;
-  float: left;
+h4 {
+  margin: 0;
+  margin-bottom: .3em;
+  margin-top: .3em;
+
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.layout-box {
+  /*display: block;*/
+  /*float: left;*/
   margin: 0 auto;
-  max-width: 40em;
-  width: 80%;
-  background-color: white;
+  margin-bottom: 5em;
+  padding: 1em;
+  max-width: 60em;
+  width: 90%;
+  background-color: green;
+  overflow: auto;
+  border-radius: .5em;
+  -webkit-box-shadow: 11px 11px 32px -9px rgba(0,0,0,0.75);
+  -moz-box-shadow: 11px 11px 32px -9px rgba(0,0,0,0.75);
+  box-shadow: 11px 11px 32px -9px rgba(0,0,0,0.75);
 }
 
 .input-box {
@@ -35,11 +57,38 @@ button {
 }
 
 .tree-box {
-  display: block;
   float: left;
+  /*background-color: snow;*/
+  max-width: 15em;
+  height: 25em;
+  margin: .5em;
+  border-radius: .5em;
+  text-align: center;
+  -webkit-box-shadow: 11px 12px 20px -12px rgba(0,0,0,0.75);
+  -moz-box-shadow: 11px 12px 20px -12px rgba(0,0,0,0.75);
+  box-shadow: 11px 12px 20px -12px rgba(0,0,0,0.75);
+}
+
+.tree-photo {
 }
 
 .photo-icon {
   width: 2em;
   height: 2em;
+  display: block;
+  float: right;
+  border-radius: .5em;
+  border: .1em solid white;
+}
+
+.tree-image {
+  position: relative;
+  z-index: 1;
+}
+
+.tree-image-icon {
+  position: absolute;
+  z-index: 2;
+  left: .4em;
+  top: .4em;
 }

@@ -16,7 +16,7 @@
   <select name="location">
     <% @location.each do |location| %>
       <option>
-        <%= location.suburb %>
+        <%= "#{location.suburb} - #{location.postcode}" %>
       </option>
     <% end %>
   </select>

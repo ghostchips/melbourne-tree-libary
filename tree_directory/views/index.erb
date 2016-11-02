@@ -3,28 +3,37 @@
 
 <% @tree.each do |tree| %>
 
-<div class="tree-box">
-  <p>
-    <a href="/trees/<%= tree.id %>">
-      <%= tree.name %>
-    </a>
-  </p>
+  <div class="tree-box">
 
-  <a href="/trees/<%= tree.id%>">
-     <img src="<%= tree.image_url %>"/>
-  </a>
+    <h4>
+      <a href="/trees/<%= tree.id %>">
+        <%= tree.name %>
+      </a>
+    </h4>
 
-  <img class='photo-icon' src="<%= tree.user.photo %>" alt="" />
+    <div class="tree-image">
+      <a href="/trees/<%= tree.id%>">
+         <img class='tree-photo' src="<%= tree.image_url %>"/>
+      </a>
 
-  <p>
-    <a href="<%= %>">
-      <%= tree.location %>
-    </a>
-  </p>
+      <div class="tree-image-icon">
+        <a href="/profile/<%= tree.user.id%>">
+          <img class='photo-icon' src="<%= tree.user.photo %>" alt="" />
+        </a>
+      </div>
+
+  </div>
+
+    <p>
+      <a href="<%= %>">
+        <%= tree.location.suburb %>
+      </a>
+    </p>
+
+  </div>
 
 <% end %>
 
-</div>
 <% if logged_in? %>
   <form action="/trees/add">
     <button>add</button>
