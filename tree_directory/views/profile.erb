@@ -3,10 +3,16 @@
 
   <h2><%= @user.username %></h2>
 
-  <% if current_user.id.to_s == @user.id.to_s %>
+  <% if logged_in? && current_user.id == @user.id %>
 
     <form action="/profile/edit/<%= @user.id %>" method="get">
       <button>edit profile</button>
+    </form>
+
+    <% else %>
+
+    <form type='hidden'>
+      <button></button>
     </form>
 
   <% end %>
@@ -29,14 +35,11 @@
     <p>Joined:</p>
     <p><%= @user.date[0...10]%></p>
 
-
-
     <% if logged_in? %>
       <form action="/trees/add">
         <button>New Tree</button>
       </form>
     <% end %>
-
 
   </div>
 

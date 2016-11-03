@@ -20,7 +20,15 @@
    box-shadow: 11px 12px 20px -12px rgba(0,0,0,0.75);
  }
 
-.comments {
+.comments textarea {
+  height: 4em;
+  border-radius: .5em;
+  border: none;
+  background-color: rgba(255,255,255,0.3);
+}
+
+.comments textarea:hover {
+  background-color: rgba(255,255,255,0.6);
 
 }
 
@@ -33,6 +41,21 @@
 }
 .comment p {
   margin: .1em;
+  font-size: .8em;
+}
+
+.comment h5 {
+  margin-top: .2em;
+  margin-bottom: .1em;
+}
+
+.comments form {
+  width: 100%;
+}
+
+.comment span {
+  font-size: .4em;
+  color: black;
 }
 
 .photo-icon-comment {
@@ -41,8 +64,8 @@
   display: block;
   border-radius: .5em;
   border: .1em solid white;
-  margin-right: .2em;
-  margin-top: .2em;
+  margin-right: .1em;
+  margin-top: .1em;
   float: right;
 }
 

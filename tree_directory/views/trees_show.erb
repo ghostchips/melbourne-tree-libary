@@ -8,11 +8,17 @@
 
   <h2><%= @tree.name %></h2>
 
-  <% if current_user.id.to_s == @tree.user_id.to_s %>
+  <% if logged_in? && current_user.id == @tree.user_id %>
 
     <form action="/trees/edit/<%= @tree.id %>" method="get">
       <button>edit</button>
     </form>
+
+  <% else %>
+
+  <form type='hidden'>
+    <button></button>
+  </form>
 
   <% end %>
 
@@ -36,32 +42,32 @@
         <a href="/profile/<%= comment.user.id %>">
           <img class='photo-icon-comment' src="<%= comment.user.photo %>" alt="" />
         </a>
-        <p><%= comment.user.username %> - </p>
+        <h5>
+          <%= comment.user.username %> wrote:
+          <span><%= comment.date %></span>
+        </h5>
         <p><%= comment.body %></p>
-        <p><%= comment.date %></p>
 
       </div>
 
     <% end %>
 
+    <% if logged_in? %>
+
+      <form action="/comments" method="post">
+        <input type="hidden" name="tree_id"
+        value="<%= @tree.id %>">
+        <textarea name="body" rows="3">
+        </textarea>
+        <button>post comment</button>
+      </form>
+      <% else %>
+        <p>
+          log in to post comments
+        </p>
+
+    <% end %>
   </div>
-
-  <% if logged_in? %>
-
-    <form action="/comments" method="post">
-      <input type="hidden" name="tree_id"
-      value="<%= @tree.id %>">
-      <textarea name="body" rows="8" cols="40">
-      </textarea>
-      <button>post comment</button>
-    </form>
-    <% else %>
-      <p>
-        log in to post comments
-      </p>
-
-  <% end %>
-
 </div>
 
 <div class="location">
@@ -78,7 +84,6 @@
 
   <p>Description:</p>
   <p><%= @tree.description %></p>
-  <p>Location:</p>
-  <p><%= @tree.location.suburb %></p>
+  <p>Location: <%= @tree.location.suburb %></p>
 
 </div>
