@@ -1,17 +1,12 @@
 
-<h2><%= @tree.name %></h2>
-<a href="/profile/<%= @tree.user.id %>">
-  <img class="photo-icon" src="<%= @tree.user.photo %>" alt="" />
-</a>
-<img class="show-tree-photo" src="<%= @tree.image_url %>"/>
-<p>
-  <%= @tree.description %>
-</p>
-<p>
-  <%= @tree.location.suburb %>
-</p>
 
-<% if logged_in? %>
+<div class="title-bar">
+
+  <a href="/profile/<%= @tree.user.id %>">
+    <img class="photo-icon" src="<%= @tree.user.photo %>" alt="" />
+  </a>
+
+  <h2><%= @tree.name %></h2>
 
   <% if current_user.id.to_s == @tree.user_id.to_s %>
 
@@ -19,48 +14,67 @@
       <button>edit</button>
     </form>
 
-    <form action="/trees/<%= @tree.id %>/delete" method="post">
-      <button>delete</button>
-    </form>
-
-  <% end %>
-
-  <form action="/comments" method="post">
-    <input type="hidden" name="tree_id"
-    value="<%= @tree.id %>">
-    <textarea name="body" rows="8" cols="40">
-    </textarea>
-    <button>post comment</button>
-  </form>
-  <% else %>
-    <p>
-      log in to post comments
-    </p>
-
-<% end %>
-
-<div class="comments">
-
-  <h3>Comments:</h3>
-  <% @comments.each do |comment| %>
-    <div class="comment">
-      <a href="/profile/<%= comment.user.id %>">
-        <img class='photo-icon' src="<%= comment.user.photo %>" alt="" />
-      </a>
-      <p><%= comment.user.username %></p>
-      <p><%= comment.body %></p>
-      <p id='date'><%= comment.date %></p>
-
-    </div>
   <% end %>
 
 </div>
 
-<div id="map"></div>
-    <script>
-      var treeLat = <%= @tree.location.latitude.to_f %>
-      var treeLng = <%= @tree.location.longitude.to_f %>
-    </script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIamQbXXBDpNswS7aBs3MhPx-MApcojfA&callback=initMap">
-    </script>
+
+<div class="show-content">
+
+  <img class="show-tree-photo" src="<%= @tree.image_url %>"/>
+
+
+  <div class="comments">
+
+    <h3>Comments:</h3>
+    <% @comments.each do |comment| %>
+      <div class="comment">
+        <a href="/profile/<%= comment.user.id %>">
+          <img class='photo-icon-comment' src="<%= comment.user.photo %>" alt="" />
+        </a>
+        <p><%= comment.user.username %></p>
+        <p><%= comment.body %></p>
+        <p><%= comment.date %></p>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <% if logged_in? %>
+
+    <form action="/comments" method="post">
+      <input type="hidden" name="tree_id"
+      value="<%= @tree.id %>">
+      <textarea name="body" rows="8" cols="40">
+      </textarea>
+      <button>post comment</button>
+    </form>
+    <% else %>
+      <p>
+        log in to post comments
+      </p>
+
+  <% end %>
+
+</div>
+
+<div class="location">
+
+  <div id="map"></div>
+
+  <script>
+    var treeLat = <%= @tree.location.latitude.to_f %>
+    var treeLng = <%= @tree.location.longitude.to_f %>
+  </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIamQbXXBDpNswS7aBs3MhPx-MApcojfA&callback=initMap">
+  </script>
+
+  <p>Description:</p>
+  <p><%= @tree.description %></p>
+  <p>Location:</p>
+  <p><%= @tree.location.suburb %></p>
+
+</div>

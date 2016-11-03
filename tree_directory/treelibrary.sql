@@ -16,7 +16,7 @@ CREATE TABLE trees (
   id SERIAL4 PRIMARY KEY,
   name VARCHAR(400),
   image_url TEXT,
-  description VARCHAR(400),
+  description TEXT,
   date VARCHAR(400),
   user_id VARCHAR(400),
   location VARCHAR(400)

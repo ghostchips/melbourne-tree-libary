@@ -12,23 +12,20 @@
     </h4>
 
     <div class="tree-image">
+
       <a href="/trees/<%= tree.id%>">
          <img class='tree-photo' src="<%= tree.image_url %>"/>
       </a>
 
       <div class="tree-image-icon">
+
         <a href="/profile/<%= tree.user.id%>">
           <img class='index-icon' src="<%= tree.user.photo %>" alt="" />
         </a>
+
       </div>
 
-  </div>
-
-    <p>
-      <a href="<%= %>">
-        <%= tree.location %>
-      </a>
-    </p>
+    </div>
 
   </div>
 
