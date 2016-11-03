@@ -1,5 +1,5 @@
 function initMap() {
-  var tree = {lat: treeLat, lng: 0.14499E3};
+  var tree = {lat: treeLat, lng: treeLng};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
     center: tree

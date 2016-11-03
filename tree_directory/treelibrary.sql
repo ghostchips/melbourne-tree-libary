@@ -30,11 +30,6 @@ CREATE TABLE comments (
   date VARCHAR(400)
 );
 
-CREATE TABLE -- connection between locations and trees (
-  id SERIAL4 PRIMARY KEY,
-  tree_id VARCHAR(400),
-  location_id VARCHAR(400)
-);
 
 CREATE TABLE locations (
   id SERIAL4 PRIMARY KEY,

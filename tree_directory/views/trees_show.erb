@@ -7,7 +7,9 @@
 <p>
   <%= @tree.description %>
 </p>
-
+<p>
+  <%= @tree.location.suburb %>
+</p>
 
 <% if logged_in? %>
 
@@ -47,6 +49,8 @@
       </a>
       <p><%= comment.user.username %></p>
       <p><%= comment.body %></p>
+      <p id='date'><%= comment.date %></p>
+
     </div>
   <% end %>
 
@@ -54,8 +58,8 @@
 
 <div id="map"></div>
     <script>
-      var treeLat =  -0.3782E2
-      var treeLng = '<%=  %>'
+      var treeLat = <%= @tree.location.latitude.to_f %>
+      var treeLng = <%= @tree.location.longitude.to_f %>
     </script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIamQbXXBDpNswS7aBs3MhPx-MApcojfA&callback=initMap">

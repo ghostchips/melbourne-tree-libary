@@ -27,13 +27,18 @@ end
 
 post '/trees' do
 
+  # get location id
+  entry = params[:location]
+  postcode = entry.delete("^0-9")
+  location = Location.where(postcode: postcode)
+
   # Insert new tree into database
   tree = Tree.new
   tree.name = params[:name]
   tree.image_url = params[:image_url]
   tree.description = params[:description]
-  tree.location = params[:location]
-  # tree.date = # date of when posted
+  tree.location_id = location.ids.first
+  tree.date = Time.now.strftime("%d/%m/%Y %H:%M")
   tree.user_id = current_user.id
   tree.save
 
@@ -58,6 +63,8 @@ post '/comments' do
   comment.body = params[:body]
   comment.tree_id = params[:tree_id]
   comment.user_id = current_user.id
+  comment.date = Time.now.strftime("%d/%m/%Y %H:%M")
+
   comment.save
 
   redirect to "/trees/#{comment.tree_id}"
