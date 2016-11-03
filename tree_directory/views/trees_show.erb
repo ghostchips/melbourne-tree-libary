@@ -23,6 +23,10 @@
 
   <img class="show-tree-photo" src="<%= @tree.image_url %>"/>
 
+  <p class="date">
+    Posted: <%= @tree.date %>
+  </p>
+
 
   <div class="comments">
 
@@ -32,7 +36,7 @@
         <a href="/profile/<%= comment.user.id %>">
           <img class='photo-icon-comment' src="<%= comment.user.photo %>" alt="" />
         </a>
-        <p><%= comment.user.username %></p>
+        <p><%= comment.user.username %> - </p>
         <p><%= comment.body %></p>
         <p><%= comment.date %></p>
 

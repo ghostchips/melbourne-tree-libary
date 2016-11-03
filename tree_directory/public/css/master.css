@@ -133,7 +133,7 @@ wrapper {
 
 .title-bar {
   display: block;
-  float: left;
+  /*float: left;*/
   margin-bottom: 1em;
   width: 70%;
 }
@@ -154,4 +154,12 @@ wrapper {
 .title-bar h2 {
   display: block;
   float: left;
+}
+
+.date {
+  display: block;
+  float: right;
+  font-size: .7em;
+  margin: 0;
+
 }

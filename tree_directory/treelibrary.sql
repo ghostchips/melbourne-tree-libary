@@ -6,11 +6,14 @@ CREATE TABLE users (
   username VARCHAR(400),
   email VARCHAR(300),
   password_digest VARCHAR(400),
-  photo VARCHAR(400)
+  photo VARCHAR(400) DEFAULT 'http://www.homeworkshop.com/wp-content/uploads/2009/07/sunlittree_no1.jpg',
+  bio TEXT,
+  location_id INTEGER,
+  date VARCHAR(400)
 );
 
-INSERT INTO users (username, email, photo)
-VALUES ('micah', 'micah@ga.co', 'https://youthgo.gov/sites/default/files/styles/large/public/montana_conservation_corps.jpg?itok=aOuDVkXo');
+-- INSERT INTO users (username, email, photo)
+-- VALUES ('micah', 'micah@ga.co', 'https://youthgo.gov/sites/default/files/styles/large/public/montana_conservation_corps.jpg?itok=aOuDVkXo');
 
 CREATE TABLE trees (
   id SERIAL4 PRIMARY KEY,
@@ -18,18 +21,17 @@ CREATE TABLE trees (
   image_url TEXT,
   description TEXT,
   date VARCHAR(400),
-  user_id VARCHAR(400),
-  location VARCHAR(400)
+  user_id INTEGER,
+  location_id INTEGER
 );
 
 CREATE TABLE comments (
   id SERIAL4 PRIMARY KEY,
   body TEXT,
-  tree_id VARCHAR(400),
-  user_id VARCHAR(400),
+  tree_id INTEGER,
+  user_id INTEGER,
   date VARCHAR(400)
 );
-
 
 CREATE TABLE locations (
   id SERIAL4 PRIMARY KEY,
@@ -44,7 +46,6 @@ INSERT INTO locations (postcode, suburb, state, latitude, longitude) VALUES
   ('3001', 'Melbourne', 'VIC', -38.370, 144.770),
   ('3002', 'East Melbourne', 'VIC', -37.820, 144.990),
   ('3003', 'West Melbourne', 'VIC', -37.810, 144.940),
-  ('3004', 'Melbourne', 'VIC', -37.840, 144.980),
   ('3004', 'St Kilda Road Central', 'VIC', -37.840, 144.980),
   ('3005', 'World Trade Centre', 'VIC', -37.820, 144.950),
   ('3006', 'South Wharf', 'VIC', -37.820, 144.970),
@@ -52,67 +53,25 @@ INSERT INTO locations (postcode, suburb, state, latitude, longitude) VALUES
   ('3008', 'Docklands', 'VIC', -37.810, 144.950),
   ('3010', 'University Of Melbourne', 'VIC', -37.800, 144.960),
   ('3011', 'Footscray', 'VIC', -37.800, 144.900),
-  ('3011', 'Seddon', 'VIC', -37.800, 144.900),
-  ('3011', 'Seddon West', 'VIC', -37.800, 144.900),
-  ('3012', 'Brooklyn', 'VIC', -37.810, 144.850);
-  ,
-
-  ('3012', 'Kingsville', 'VIC', -37.810, 144.850),
-  ('3012', 'Kingsville West', 'VIC', -37.810, 144.850),
-  ('3012', 'Maidstone', 'VIC', -37.810, 144.850),
-  ('3012', 'Tottenham', 'VIC', -37.810, 144.850),
-  ('3012', 'West Footscray', 'VIC', -37.810, 144.850),
+  ('3012', 'Brooklyn', 'VIC', -37.810, 144.850),
   ('3013', 'Yarraville', 'VIC', -37.820, 144.890),
-  ('3013', 'Yarraville West', 'VIC', -37.820, 144.890),
-  ('3015', 'Newport', 'VIC', -37.840, 144.880),
-  ('3015', 'South Kingsville', 'VIC', -37.840, 144.880),
-  ('3015', 'Spotswood', 'VIC', -37.840, 144.880),
-  ('3016', 'Williamstown', 'VIC', -37.860, 144.900),
-  ('3016', 'Williamstown North', 'VIC', -37.860, 144.900),
-  ('3018', 'Altona', 'VIC', -37.870, 144.830),
-  ('3018', 'Seaholme', 'VIC', -37.870, 144.830),
-  ('3019', 'Braybrook', 'VIC', -37.780, 144.860),
-  ('3019', 'Braybrook North', 'VIC', -37.780, 144.860),
-  ('3019', 'Robinson', 'VIC', -37.780, 144.860),
-  ('3020', 'Albion', 'VIC', -37.780, 144.820);
+  ('3015', 'Spotswood', 'VIC', -37.840, 144.880);
 
-  ('3020', 'Glengala', 'VIC', -37.780, 144.820),
+  ('3016', 'Williamstown', 'VIC', -37.860, 144.900),
+  ('3018', 'Altona', 'VIC', -37.870, 144.830),
+  ('3019', 'Braybrook', 'VIC', -37.780, 144.860),
   ('3020', 'Sunshine', 'VIC', -37.780, 144.820),
-  ('3020', 'Sunshine North', 'VIC', -37.780, 144.820),
-  ('3020', 'Sunshine West', 'VIC', -37.780, 144.820),
-  ('3021', 'Albanvale', 'VIC', -37.750, 144.770),
-  ('3021', 'Kealba', 'VIC', -37.750, 144.770),
-  ('3021', 'Kings Park', 'VIC', -37.750, 144.770),
   ('3021', 'St Albans', 'VIC', -37.750, 144.770),
-  ('3022', 'Ardeer', 'VIC', -37.780, 144.800),
   ('3022', 'Deer Park East', 'VIC', -37.780, 144.800),
-  ('3023', 'Burnside', 'VIC', -37.750, 144.750),
-  ('3023', 'Burnside Heights', 'VIC', -37.750, 144.750),
-  ('3023', 'Cairnlea', 'VIC', -37.750, 144.750),
   ('3023', 'Caroline Springs', 'VIC', -37.750, 144.750),
-  ('3023', 'Deer Park', 'VIC', -37.750, 144.750),
-  ('3023', 'Deer Park North', 'VIC', -37.750, 144.750),
-  ('3023', 'Ravenhall', 'VIC', -37.750, 144.750),
-  ('3024', 'Mambourin', 'VIC', -37.900, 144.560),
-  ('3024', 'Mount Cottrell', 'VIC', -37.900, 144.560),
   ('3024', 'Wyndham Vale', 'VIC', -37.900, 144.560),
-  ('3025', 'Altona East', 'VIC', -37.840, 144.860),
   ('3025', 'Altona Gate', 'VIC', -37.840, 144.860),
-  ('3025', 'Altona North', 'VIC', -37.840, 144.860),
   ('3026', 'Laverton North', 'VIC', -37.840, 144.800),
   ('3027', 'Williams Landing', 'VIC', -37.860, 144.760),
-  ('3028', 'Altona Meadows', 'VIC', -37.870, 144.780),
   ('3028', 'Laverton', 'VIC', -37.870, 144.780),
-  ('3028', 'Seabrook', 'VIC', -37.870, 144.780),
   ('3029', 'Hoppers Crossing', 'VIC', -37.880, 144.700),
-  ('3029', 'Tarneit', 'VIC', -37.880, 144.700),
-  ('3029', 'Truganina', 'VIC', -37.880, 144.700),
-  ('3030', 'Cocoroc', 'VIC', -37.970, 144.580),
-  ('3030', 'Derrimut', 'VIC', -37.970, 144.580),
-  ('3030', 'Point Cook', 'VIC', -37.970, 144.580),
-  ('3030', 'Quandong', 'VIC', -37.970, 144.580),
-  ('3030', 'Werribee', 'VIC', -37.970, 144.580),
-  ('3030', 'Werribee South', 'VIC', -37.970, 144.580),
+  ('3030', 'Point Cook', 'VIC', -37.970, 144.580);
+
   ('3031', 'Flemington', 'VIC', -37.790, 144.930),
   ('3031', 'Kensington', 'VIC', -37.790, 144.930),
   ('3032', 'Ascot Vale', 'VIC', -37.780, 144.920),

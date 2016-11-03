@@ -1,46 +1,74 @@
 
-<h2><%= @user.username %></h2>
-<img src="<%= @user.photo%>" alt="" />
+<div class="title-bar">
 
-<h3>Trees by <%= @user.username %></h3>
+  <h2><%= @user.username %></h2>
 
+  <% if current_user.id.to_s == @user.id.to_s %>
 
-<% @user.trees.each do |tree| %>
+    <form action="/profile/edit/<%= @user.id %>" method="get">
+      <button>edit profile</button>
+    </form>
 
-<div class="tree-box">
-  <p>
-    <a href="/trees/<%= tree.id %>">
-      <%= tree.name %>
-    </a>
-  </p>
-
-  <a href="/trees/<%= tree.id%>">
-     <img src="<%= tree.image_url %>"/>
-  </a>
-
-  <p>
-    <a href="#">
-      tree.location
-    </a>
-  </p>
-
-<% end %>
+  <% end %>
 
 </div>
 
-<h3>Comments by <%= @user.username %></h3>
 
-<% @user.comments.each do |comment| %>
+<div class="profile">
 
-  <p>
-    <%= comment.body %>
-  </p>
+  <div class="user-info">
 
-<% end %>
+    <img src="<%= @user.photo%>" alt="" />
+
+    <p>Location:</p>
+    <p><%= @user.location.suburb%></p>
+
+    <p>Bio:</p>
+    <p><%= @user.bio%></p>
+
+    <p>Joined:</p>
+    <p><%= @user.date[0...10]%></p>
 
 
-<% if logged_in? %>
-  <form action="/trees/add">
-    <button>add</button>
-  </form>
-<% end %>
+
+    <% if logged_in? %>
+      <form action="/trees/add">
+        <button>New Tree</button>
+      </form>
+    <% end %>
+
+
+  </div>
+
+  <div class="profile-trees">
+
+    <h3>Trees by <%= @user.username %></h3>
+
+    <% @user.trees.each do |tree| %>
+
+      <div class="user-trees">
+        <h3>
+          <a href="/trees/<%= tree.id %>">
+            <%= tree.name %>
+          </a>
+        </h3>
+
+        <p class="date">
+          Posted: <%= tree.date[0...10] %>
+        </p>
+
+
+        <a href="/trees/<%= tree.id%>">
+           <img src="<%= tree.image_url %>"/>
+        </a>
+
+        <p>
+          <%= tree.description %>
+        </p>
+      </div>
+
+    <% end %>
+
+  </div>
+
+</div>

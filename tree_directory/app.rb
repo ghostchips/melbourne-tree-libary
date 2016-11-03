@@ -42,6 +42,7 @@ post '/trees' do
   tree.user_id = current_user.id
   tree.save
 
+
   redirect to '/'
 end
 
@@ -56,18 +57,6 @@ get '/trees/:id' do
   # if logged in as post user, display delete and edit buttons
 
   erb :trees_show
-end
-
-post '/comments' do
-  comment = Comment.new
-  comment.body = params[:body]
-  comment.tree_id = params[:tree_id]
-  comment.user_id = current_user.id
-  comment.date = Time.now.strftime("%d/%m/%Y %H:%M")
-
-  comment.save
-
-  redirect to "/trees/#{comment.tree_id}"
 end
 
 post '/trees/:id/delete' do
@@ -92,12 +81,17 @@ end
 
 post '/trees/update/:id' do
 
+  # entry = params[:location]
+  # postcode = entry.delete("^0-9")
+  # location = Location.where(postcode: postcode)
+
   @tree = Tree.find(params[:id])
 
   # modify corresponding tree entry in database
   @tree.name = params[:name]
   @tree.image_url = params[:image_url]
   @tree.description = params[:description]
+  # tree.location_id = location.ids.first
   @tree.save
 
   redirect to "/trees/#{@tree.id}"
@@ -105,6 +99,17 @@ post '/trees/update/:id' do
 end
 
 get '/trees/location' do
-
   erb :trees_location
+end
+
+post '/comments' do
+  comment = Comment.new
+  comment.body = params[:body]
+  comment.tree_id = params[:tree_id]
+  comment.user_id = current_user.id
+  comment.date = Time.now.strftime("%d/%m/%Y %H:%M")
+
+  comment.save
+
+  redirect to "/trees/#{comment.tree_id}"
 end
