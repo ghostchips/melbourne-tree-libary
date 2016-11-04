@@ -1,6 +1,6 @@
 
 require 'sinatra'
-# require 'sinatra/reloader'
+require 'sinatra/reloader'
 require 'pry'
 
 require_relative 'db_config'
@@ -40,9 +40,9 @@ post '/trees' do
   tree.location_id = location.ids.first
   tree.date = Time.now.strftime("%d/%m/%Y %H:%M")
   tree.user_id = current_user.id
-
-  # if tree.save
-    redirect to '/'
+  # if
+  tree.save
+  redirect to "/trees/#{ tree.id }"
   # end
 end
 
@@ -80,10 +80,9 @@ get '/trees/edit/:id' do
 end
 
 post '/trees/update/:id' do
-
-  # entry = params[:location]
-  # postcode = entry.delete("^0-9")
-  # location = Location.where(postcode: postcode)
+  entry = params[:location]
+  postcode = entry.delete("^0-9")
+  location = Location.where(postcode: postcode)
 
   @tree = Tree.find(params[:id])
 
@@ -91,7 +90,7 @@ post '/trees/update/:id' do
   @tree.name = params[:name]
   @tree.image_url = params[:image_url]
   @tree.description = params[:description]
-  # tree.location_id = location.ids.first
+  @tree.location_id = location.ids.first
 
   # if
     @tree.save

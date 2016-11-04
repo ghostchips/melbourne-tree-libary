@@ -16,10 +16,10 @@
   </textarea>
 
   <label>Location</label>
-  <select>
+  <select name="location">
     <% @location.each do |location| %>
-      <option value="<% location.postcode %>">
-        <%= location.suburb %>
+      <option>
+        <%= "#{location.suburb} - #{location.postcode}" %>
       </option>
     <% end %>
   </select>

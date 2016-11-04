@@ -15,7 +15,6 @@ html {
   background-size: cover;
 }
 
-
 label {
   display: block;
 }
@@ -66,7 +65,14 @@ textarea {
 }
 .wrapper h1 {
   margin-bottom: .1em;
-  margin-left: .3em;
+  color: snow;
+}
+
+.web-title {
+  margin: 0 auto;
+  max-width: 44em;
+  width: 100%;
+  overflow: auto;
 }
 
 .header {

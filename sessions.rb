@@ -41,7 +41,7 @@ post '/session/create/new' do
   # if
     user.save
     session[:user_id] = user.id
-    redirect to '/'
+    redirect to "/profile/#{user.id}"
   # end
 end
 
