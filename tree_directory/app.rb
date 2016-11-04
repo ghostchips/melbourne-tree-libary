@@ -40,10 +40,10 @@ post '/trees' do
   tree.location_id = location.ids.first
   tree.date = Time.now.strftime("%d/%m/%Y %H:%M")
   tree.user_id = current_user.id
-  tree.save
 
-
-  redirect to '/'
+  # if tree.save
+    redirect to '/'
+  # end
 end
 
 get '/trees/:id' do
@@ -92,10 +92,11 @@ post '/trees/update/:id' do
   @tree.image_url = params[:image_url]
   @tree.description = params[:description]
   # tree.location_id = location.ids.first
-  @tree.save
 
-  redirect to "/trees/#{@tree.id}"
-
+  # if
+    @tree.save
+    redirect to "/trees/#{@tree.id}"
+  # end
 end
 
 get '/trees/location' do

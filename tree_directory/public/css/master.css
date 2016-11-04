@@ -15,6 +15,7 @@ html {
   background-size: cover;
 }
 
+
 label {
   display: block;
 }
@@ -59,7 +60,13 @@ textarea {
   width: 100%;
 }
 
-wrapper {
+.wrapper {
+  margin: 0 auto;
+  width: 80%;
+}
+.wrapper h1 {
+  margin-bottom: .1em;
+  margin-left: .3em;
 }
 
 .header {
@@ -71,7 +78,7 @@ wrapper {
   margin-bottom: 5em;
   padding: 1em;
   max-width: 44em;
-  width: 80%;
+  width: 100%;
   background-color: rgba(0,0,0,0.5);
   overflow: auto;
   border-radius: .5em;

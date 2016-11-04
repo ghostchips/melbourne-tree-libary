@@ -37,10 +37,12 @@ post '/session/create/new' do
   user.email = params[:email]
   user.password = params[:password]
   user.date = Time.now.strftime("%d/%m/%Y")
-  user.save
 
-  session[:user_id] = user.id
-  redirect to '/'
+  # if
+    user.save
+    session[:user_id] = user.id
+    redirect to '/'
+  # end
 end
 
 get '/profile/edit/:id' do
@@ -55,13 +57,14 @@ post '/profile/update/:id' do
   entry = params[:location]
   postcode = entry.delete("^0-9")
   location = Location.where(postcode: postcode)
-
   @user = User.find(params[:id])
   @user.email = params[:email]
   @user.bio = params[:bio]
   @user.photo = params[:photo]
   @user.location_id = location.ids.first
-  @user.save
 
-  redirect to "/profile/#{ @user.id }"
+  # if
+    @user.save
+    redirect to "/profile/#{ @user.id }"
+  # end
 end

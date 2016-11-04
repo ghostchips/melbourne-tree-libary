@@ -8,7 +8,7 @@ CREATE TABLE users (
   password_digest VARCHAR(400),
   photo VARCHAR(400) DEFAULT 'http://www.homeworkshop.com/wp-content/uploads/2009/07/sunlittree_no1.jpg',
   bio TEXT,
-  location_id INTEGER,
+  location_id INTEGER DEFAULT 1,
   date VARCHAR(400)
 );
 

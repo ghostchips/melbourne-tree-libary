@@ -4,4 +4,7 @@ class User < ActiveRecord::Base
   belongs_to :location
   has_many :trees
   has_many :comments
+  # validates :username, presence: true
+  # validates :email, presence: true
+  # validates :password, length: { minimum: 3 }
 end
